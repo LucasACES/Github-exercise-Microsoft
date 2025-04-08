@@ -7,6 +7,9 @@ from .models import User, Team, Activity, Leaderboard, Workout
 @api_view(['GET'])
 def api_root(request, format=None):
     base_url = request.build_absolute_uri('/')
+    codespace_suffix = "solid-cod-vwpxqrrq9gghwpqw-8000.app.github.dev"
+    if "localhost" not in base_url:
+        base_url = f"https://{codespace_suffix}/"
     return Response({
         'users': f"{base_url}api/users/",
         'teams': f"{base_url}api/teams/",
